@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.forecast-card {
+    background: #17a2b8;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 18%;
+    margin: 5px;
+    display: inline-block;
+}
