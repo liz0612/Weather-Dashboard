@@ -69,6 +69,6 @@ Click on Search History → Reloads weather for previous cities.
 
 
 🎯 Happy Weather Tracking! ☀️🌧️❄️
-![images](Screenshot%202025-02-10%20at%2011.18.48 AM.png)
-![images](Screenshot%202025-02-10%20at%2011.18.51 AM.png)
-![images](Screenshot%202025-02-10%20at%2011.19.05 AM.png)
+![images](./assets/images/Screenshot%202025-02-10%20at%2011.18.48 AM.png)
+![images](./assets/images/Screenshot%202025-02-10%20at%2011.18.51 AM.png)
+![images](./assets/images/Screenshot%202025-02-10%20at%2011.19.05 AM.png)
