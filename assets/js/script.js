@@ -71,31 +71,38 @@ $(document).ready(function () {
 
     function getForecast(lat, lon) {
         let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
-
+    
         fetch(forecastUrl)
             .then(response => response.json())
             .then(data => {
                 $("#forecast").empty();
-                for (let i = 0; i < data.list.length; i += 8) { // Every 24 hours
-                    let forecast = data.list[i];
-                    let date = new Date(forecast.dt_txt).toLocaleDateString();
-                    let temp = forecast.main.temp;
-                    let humidity = forecast.main.humidity;
-                    let wind = forecast.wind.speed;
-                    let icon = forecast.weather[0].icon;
-
-                    let forecastCard = `
-                        <div class="forecast-card">
-                            <p>${date}</p>
-                            <img src="https://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
-                            <p>🌡️ ${temp}°C</p>
-                            <p>💧 ${humidity}%</p>
-                            <p>🌬️ ${wind} m/s</p>
-                        </div>
-                    `;
-
-                    $("#forecast").append(forecastCard);
-                }
+                let forecastDays = [];
+    
+                data.list.forEach(forecast => {
+                    let forecastDate = new Date(forecast.dt_txt).toLocaleDateString();
+    
+                    // Only add unique dates (avoiding duplicate days)
+                    if (!forecastDays.includes(forecastDate) && forecastDays.length < 5) {
+                        forecastDays.push(forecastDate);
+                        
+                        let temp = forecast.main.temp;
+                        let humidity = forecast.main.humidity;
+                        let wind = forecast.wind.speed;
+                        let icon = forecast.weather[0].icon;
+    
+                        let forecastCard = `
+                            <div class="forecast-card">
+                                <p>${forecastDate}</p>
+                                <img src="https://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
+                                <p>🌡️ ${temp}°C</p>
+                                <p>💧 ${humidity}%</p>
+                                <p>🌬️ ${wind} m/s</p>
+                            </div>
+                        `;
+    
+                        $("#forecast").append(forecastCard);
+                    }
+                });
             })
             .catch(error => console.error("Error fetching forecast:", error));
     }
